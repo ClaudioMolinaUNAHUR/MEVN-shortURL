@@ -1,7 +1,7 @@
 <template>
   <q-page class="row justify-center">
     <div class="col-12 col-sm-6 col-md-5">
-      <h2>login {{ userStore.token }}</h2>
+      <h2>login</h2>
       <q-form @submit.prevent="handleSubmit">
 
         <q-input

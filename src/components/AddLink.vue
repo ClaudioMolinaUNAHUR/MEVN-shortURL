@@ -4,7 +4,7 @@ import { uselinkStore } from 'src/stores/link-store';
 import { useNotify } from '../composables/notifyHook'
 
 const useLink = uselinkStore();
-const { showNotify } = useNotify()
+const { successNotify, errorNotify } = useNotify()
 
 const link = ref('')
 const loading = ref(false)
@@ -13,16 +13,16 @@ const addlink = async() => {
   try {
     loading.value = true
     await useLink.createLink(link.value)
-    showNotify("Link agregado", 'green', 'announcement')
+    successNotify("Link agregado")
     link.value = ''
   } catch (error) {
     console.log(error)
     if(error.errors){
       return error.errors.forEach(item => {
-        showNotify(item.msg)
+        errorNotify(item.msg)
       });
     }
-    showNotify("Error al agregar")
+    errorNotify("Error al agregar")
   }finally{
     loading.value = false
   }

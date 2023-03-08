@@ -3,6 +3,22 @@ import { useQuasar } from 'quasar';
 export const useNotify = () => {
   const $q = useQuasar()
 
+  const errorNotify = (message = 'Error de servidor') => {
+    $q.notify({
+      message,
+      color: 'negative',
+      icon: 'report_problem'
+    })
+  }
+
+  const successNotify = (message = 'Error de servidor') => {
+    $q.notify({
+      message,
+      color: 'green',
+      icon: 'announcement'
+    })
+  }
+
   const showNotify = (message = 'Error de servidor', color = 'negative', icon ) => {
     $q.notify({
       message,
@@ -10,5 +26,5 @@ export const useNotify = () => {
       icon: icon || 'report_problem'
     })
   }
-  return {showNotify}
+  return {showNotify, successNotify , errorNotify}
 }
